@@ -1,4 +1,3 @@
-#from cars import cars
 import configparser
 
 config = configparser.ConfigParser()
