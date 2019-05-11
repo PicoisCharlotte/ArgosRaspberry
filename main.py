@@ -1,9 +1,9 @@
-from src.http import http
+from src.models import robot
 import configparser
 
 config = configparser.ConfigParser()
 config.read('config/config.ini')
 
 def main() :
-    http.getRobot(config)
+    robot.getRobot(config)
 main()
