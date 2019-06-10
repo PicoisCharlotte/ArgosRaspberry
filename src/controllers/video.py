@@ -1,4 +1,6 @@
 from src.services import shellService
+from config import globalVariable
 
-def getUrlVideo(config) :
-    shellService.execCommand("ls")
+def getUrlVideo() :
+    #shellService.execCommand("ls")
+    print(globalVariable.cfg['ADAFRUITIO'])
