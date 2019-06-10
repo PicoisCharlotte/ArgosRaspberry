@@ -7,5 +7,6 @@ config.read('config/config.ini')
 
 def main() :
     #robot.getRobot(config)
-    video.getUrlVideo(config)
+    #video.getUrlVideo(config)
+    print("it work !!")
 main()
