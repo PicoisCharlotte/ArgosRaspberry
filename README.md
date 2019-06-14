@@ -5,10 +5,18 @@ Project in python to perform http requests and actions on google drive for the c
 ## execute script
 
 launched sensor script :
-    - make sensor
+<pre>
+<code>
+make sensor
+</pre>
+</code>
 
 launched action script :
-    - make action
+<pre>
+<code>
+make action
+</code>
+</pre>
 
 ## Create Service file
 
