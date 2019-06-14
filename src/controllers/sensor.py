@@ -3,48 +3,46 @@ from Adafruit_IO import RequestError
 import time
 
 def initSensor() :
-    try:
-        #getValueSoundSensor()
-        #setValueSoundSensor(10)
-        getValueMotionSensor()
-    except KeyboardInterrupt:
-        print("\nSensor process closed")
+    while True :
+        try :
+            getValueSoundSensor()
+            #setValueSoundSensor(10)
+            getValueMotionSensor()
+        except KeyboardInterrupt :
+            break
 
 #Sound sensor
 def getValueSoundSensor() :
     aio = adafruitService.getInstanceAdafruitClient()
     try:
-        sliderSon = aio.feeds('argos-feed.capteur-son')
+        soundSensor = aio.feeds('argos-feed.capteur-son')
     except RequestError:
-        sliderSon = adafruitService.getCreateFeed(aio, 'argos-feed.capteur-son')
+        soundSensor = adafruitService.getCreateFeed(aio, 'argos-feed.capteur-son')
 
-    while True:
-        data = aio.receive(sliderSon.key)
-        time.sleep(2)
-        print("Sound sensor value retrieve from Adafruit : " + data.value)
+    data = aio.receive(soundSensor.key)
+    time.sleep(2)
+    print("Sound sensor value retrieve from Adafruit : " + data.value)
 
 def setValueSoundSensor(value) :
     aio = adafruitService.getInstanceAdafruitClient()
 
     try:
-        soundSensorFeed = aio.feeds('argos-feed.capteur-son')
+        soundSensorFeed = aio.feeds('argos-feed.robotaction')
     except RequestError:
-        soundSensorFeed = adafruitService.getCreateFeed(aio, 'argos-feed.capteur-son')
+        soundSensorFeed = adafruitService.getCreateFeed(aio, 'argos-feed.robotaction')
     
-    while True:
-        aio.send_data(soundSensorFeed.key, value)
-        print("value post")
-        time.sleep(5)
+    aio.send_data(soundSensorFeed.key, value)
+    print("value post")
+    time.sleep(5)
 
 # Motion sensor
 def getValueMotionSensor() :
     aio = adafruitService.getInstanceAdafruitClient()
     try:
-        remoteControlMotion = aio.feeds('argos-feed.capteur-mouvement')
+        motionSensor = aio.feeds('argos-feed.capteur-mouvement')
     except RequestError:
-        remoteControlMotion = adafruitService.getCreateFeed(aio, 'argos-feed.capteur-mouvement')
+        motionSensor = adafruitService.getCreateFeed(aio, 'argos-feed.capteur-mouvement')
 
-    while True:
-        data = aio.receive(remoteControlMotion.key)
-        time.sleep(2)
-        print("Motion sensor value retrieve from Adafruit : " + data.value)
+    data = aio.receive(motionSensor.key)
+    print("Motion sensor value retrieve from Adafruit : " + data.value)
+    time.sleep(5)
