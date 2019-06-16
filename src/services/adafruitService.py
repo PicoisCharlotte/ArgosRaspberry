@@ -1,4 +1,4 @@
-from Adafruit_IO import Client, Feed
+from Adafruit_IO import Client, Feed, MQTTClient
 from config import globalVariable
 
 def getInstanceAdafruitClient() :
@@ -6,4 +6,6 @@ def getInstanceAdafruitClient() :
 def getCreateFeed(intstanceClient, feedName) :
     feed = Feed(name=feedName)
     return intstanceClient.create_feed(feed)
+def getInstanceMqttClient() :
+    return MQTTClient(globalVariable.cfg['ADAFRUITIO']['USERNAME'], globalVariable.cfg['ADAFRUITIO']['KEY'])
 

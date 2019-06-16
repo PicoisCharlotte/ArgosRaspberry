@@ -1,4 +1,5 @@
-from src.controllers import sensor
+#from src.controllers.http import sensor
+from src.controllers.mqtt import sensor
 from config import globalVariable
 import configparser
 
@@ -7,6 +8,6 @@ config.read('config/config.ini')
 globalVariable.init(config)
 
 def initProcessSensor() :
-    sensor.initSensor()
+    sensor.sendSensorValue()
 
 initProcessSensor()
