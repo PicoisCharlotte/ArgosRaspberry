@@ -3,9 +3,6 @@
 Project in python to perform http requests and actions on google drive for the cloud from the raspberry.
 
 ## execute script
-<<<<<<< HEAD
-    - make script
-=======
 
 launched sensor script :
 <pre>
@@ -20,7 +17,6 @@ launched action script :
 make action
 </code>
 </pre>
->>>>>>> develop
 
 ## Create Service file
 
@@ -94,7 +90,3 @@ sudo systemctl daemon-reload
 sudo systemctl restart your_service.service
 </code>
 </pre>
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
