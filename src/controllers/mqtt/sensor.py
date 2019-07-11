@@ -2,6 +2,12 @@ from Adafruit_IO import MQTTClient
 from src.services import adafruitService
 import sys
 import time
+import serial
+
+global ser
+global value1
+global value2
+ser = serial.Serial('/dev/ttyACM0', 9600 )
 
 def sendSensorValue() :
     client = adafruitService.getInstanceMqttClient()
@@ -13,11 +19,15 @@ def sendSensorValue() :
     client.loop_background()
     time.sleep(5)
     while True :
+        value1 = ser.readline().decode()
+        print("valeur1 :")
+        print(value1)
+        value2 = ser.readline().decode()
+        print("valeur2 :")
+        print(value2)
         try :
-            setIrSensor(client)
-            setProximitySensor(client)
-            setMotionSensor(client)
-            setSoundSensor(client)
+            setMotionSensor(client, value2)
+            setSoundSensor(client, value1)
             time.sleep(5)
         except KeyboardInterrupt :
             break
@@ -29,22 +39,10 @@ def disconnected(client) :
     print('Disconnected from Adafruit IO!')
     sys.exit(1)
 
-def setIrSensor(client) :
-    value = 10
-    client.publish('argos-feed.capteur-ir', value)
+def setMotionSensor(client, value2) :
+    client.publish('argos-feed.capteur-mouvement', value2)
     print("post")
 
-def setProximitySensor(client) :
-    value = 10
-    client.publish('argos-feed.capteur-proximite', value)
-    print("post")
-
-def setMotionSensor(client) :
-    value = 10
-    client.publish('argos-feed.capteur-mouvement', value)
-    print("post")
-
-def setSoundSensor(client) :
-    value = 10
-    client.publish('argos-feed.capteur-son', value)
+def setSoundSensor(client, value1) :
+    client.publish('argos-feed.capteur-son', value1)
     print("post")
