@@ -4,7 +4,7 @@ from config import globalVariable
 import configparser
 
 config = configparser.ConfigParser()
-config.read('config/config.ini')
+config.read('/home/pi/Documents/argosraspberry/config/config.ini')
 globalVariable.init(config)
 
 def initProcessSensor() :
